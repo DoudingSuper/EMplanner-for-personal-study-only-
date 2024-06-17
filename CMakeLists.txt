@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.10.2)
+project(EMplanner)
+set(CMAKE_BUILD_TYPE "Debug")
+
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(osqp REQUIRED)
+find_package(OsqpEigen REQUIRED)
+
+include_directories(/usr/local/include/coin-or ./include)
+link_directories(/usr/local/lib)
+
+add_executable(main src/main.cpp src/path_smoother.cpp src/trajectory_NLP.cpp src/frenetUtils.cpp src/em_planner.cpp)
+add_executable(test src/test.cpp )
+add_executable(osqp_test src/osqp_test.cpp )
+target_link_libraries(main Python3::Python Eigen3::Eigen osqp::osqp OsqpEigen::OsqpEigen)
+target_link_libraries(test Eigen3::Eigen)
+target_link_libraries(osqp_test Eigen3::Eigen osqp::osqp OsqpEigen::OsqpEigen)
