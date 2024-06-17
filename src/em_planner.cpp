@@ -243,11 +243,12 @@ void EMplanner::create_qp_path(double w_ref, double w_center, double w_dl, doubl
         if (i < n - 1)
             m_dddl.block(3 * (i + 1), i, 3, 1) = a;
         // gradient[3 * i] = -2 * _dp_path[i].l;
-        gradient[3 * i] = - road_ub[i] - road_lb[i];
+        gradient[3 * i] = - w_center * (road_ub[i] + road_lb[i]) - w_ref * 3 ;
     }
     ub[2 * (n - 1)] = std::max(road_ub[0], _host_lacation.l);
     lb[2 * (n - 1)] = std::min(road_lb[0], _host_lacation.l);
     A.block(2 * (n - 1) + n, 0, 3, 3) = Eigen::MatrixXd::Identity(3, 3);
+    // 起点约束
     ub[2 * (n - 1) + n] = _host_lacation.l;
     ub[2 * (n - 1) + n + 1] = _host_lacation.d_l;
     ub[2 * (n - 1) + n + 2] = _host_lacation.dd_l;
@@ -258,7 +259,7 @@ void EMplanner::create_qp_path(double w_ref, double w_center, double w_dl, doubl
         _LinearMatrix = A.sparseView();
         _Hessian = (w_ref * m_ref * m_ref.transpose() + w_center * m_center * m_center.transpose() +
                                            w_dl * m_dl * m_dl.transpose() + w_ddl * m_ddl * m_ddl.transpose() +
-                                           w_dddl * (m_ref * m_ref.transpose() - m_ref * m_dddl.transpose())).sparseView();
+                                           w_dddl * (2 * m_ddl * m_ddl.transpose() - 2 * m_ddl * m_dddl.transpose())).sparseView();
         _last_n = n;
     }
     // for (int i = 0; i < n; i++)
