@@ -63,7 +63,10 @@ public:
     // 获取二次规划上下界
     void get_qp_bound(std::vector<double> &ub, std::vector<double> &lb);
     // 使用二次规划进行路径平滑
-    void create_qp_path(double w_ref = 100, double w_center = 100, double w_dl = 100, double w_ddl = 10, double w_dddl = 100);
+    /* ***调参注意事项：***
+    这里的参数会影响到二次规划能否求解成功，暂时不知道原因
+    */
+    void create_qp_path(double w_ref = 10, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
     // 获取最终路径
     void convert_qp_path();
     // 在st坐标系中进行采样，用于速度动态规划
