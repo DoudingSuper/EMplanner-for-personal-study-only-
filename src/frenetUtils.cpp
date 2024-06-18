@@ -480,13 +480,14 @@ void CartesianFrenetConvert::frenet_to_cartesian(obstacle &point, waypoint &proj
                         point.x, point.y, point.dir, point.k, point.velocity, point.acc);
 }
 
-void CreateConvexSpace::init(waypoint &start_point, int s_num, int l_num, double delta_s, double delta_l) {
+void CreateConvexSpace::init(waypoint &start_point, int s_num, int l_num, double delta_s, double delta_l, double offset) {
     _sps.clear();
     _start_point = start_point;
     _s_num = s_num;
     _l_num = l_num;
     _delta_s = delta_s;
     _delta_l = delta_l;
+    _offset = offset;
     int sps_num = 1 + s_num * l_num;
     _edges.resize(sps_num, std::vector<long long>(sps_num, 0));
     _polynomial_sample_points.resize(sps_num, std::vector<std::vector<waypoint>>(sps_num, std::vector<waypoint>()));
@@ -593,9 +594,9 @@ void CreateConvexSpace::cal_cost(const std::vector<obstacle> &obstacles, double 
                 sample_on_polynomial(p1, p2);
                 for (auto point : _polynomial_sample_points[p1][p2]) {
                     // 注意，这里的平滑代价只计算到l的二阶导，如有需要可以提升至三阶导
-                    smooth_cost += point.d_l * point.d_l + point.dd_l * point.dd_l; 
+                    smooth_cost += 10 * point.d_l * point.d_l + 20 * point.dd_l * point.dd_l; 
                     obs_dist_cost += cal_obs_dist_cost(point, obstacles);
-                    ref_dist_cost += point.l * point.l;
+                    ref_dist_cost += (point.l - _offset) * (point.l - _offset);
                 }
                 // 将i和i+j+tem这两个点之间的代价存入二维邻接矩阵_edges
                 _edges[p1][p2] = w1 * smooth_cost + w2 * obs_dist_cost + w3 * ref_dist_cost;

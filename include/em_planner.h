@@ -57,7 +57,7 @@ public:
     // 对障碍物坐标进行坐标转化（笛卡尔转自然坐标）
     bool convert_obstacles_point();
     // 在自然坐标系中进行路径点采样，用于动态规划
-    bool dp_path_sample(int s_num = 6, int l_num = 9, double delta_s = 10, double delta_l = 1);
+    bool dp_path_sample(double offset = 0, int s_num = 6, int l_num = 9, double delta_s = 10, double delta_l = 1);
     // 在五次多项式连接线上进行采样
     void convert_dp_path();
     // 获取二次规划上下界
@@ -66,7 +66,7 @@ public:
     /* ***调参注意事项：***
     这里的参数会影响到二次规划能否求解成功，暂时不知道原因
     */
-    void create_qp_path(double w_ref = 5, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
+    void create_qp_path(double offset = 0, double w_ref = 5, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
     // 获取最终路径
     void convert_qp_path();
     // 在st坐标系中进行采样，用于速度动态规划

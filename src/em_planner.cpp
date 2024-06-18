@@ -178,8 +178,8 @@ bool EMplanner::convert_obstacles_point() {
 }
 
 // 在自然坐标系中进行采样，用于动态规划
-bool EMplanner::dp_path_sample(int s_num, int l_num, double delta_s, double delta_l) {
-    _convex_space.init(_start_point, s_num, l_num, delta_s, delta_l);
+bool EMplanner::dp_path_sample(double offset, int s_num, int l_num, double delta_s, double delta_l) {
+    _convex_space.init(_start_point, s_num, l_num, delta_s, delta_l, offset);
     _convex_space.create_rough_path(_obstacles);
 
 }
@@ -208,7 +208,7 @@ void EMplanner::get_qp_bound(std::vector<double> &ub, std::vector<double> &lb) {
     _convex_space.create_convex_space(_obstacles, ub, lb);
 }
 
-void EMplanner::create_qp_path(double w_ref, double w_center, double w_dl, double w_ddl, double w_dddl) {
+void EMplanner::create_qp_path(double offset, double w_ref, double w_center, double w_dl, double w_ddl, double w_dddl) {
     // sample_on_frenet();
     _qp_path.clear();
     convert_dp_path();
@@ -243,7 +243,7 @@ void EMplanner::create_qp_path(double w_ref, double w_center, double w_dl, doubl
         if (i < n - 1)
             m_dddl.block(3 * (i + 1), i, 3, 1) = a;
         // gradient[3 * i] = -2 * _dp_path[i].l;
-        gradient[3 * i] = - w_center * (road_ub[i] + road_lb[i]) - w_ref * 3 ;
+        gradient[3 * i] = - w_center * (road_ub[i] + road_lb[i]) - w_ref * offset * 2 ;
     }
     ub[2 * (n - 1)] = std::max(road_ub[0], _host_lacation.l);
     lb[2 * (n - 1)] = std::min(road_lb[0], _host_lacation.l);

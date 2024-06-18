@@ -224,7 +224,7 @@ public:
 };
 
 class CreateConvexSpace {
-    int _s_num, _l_num, _delta_s, _delta_l;
+    int _s_num, _l_num, _delta_s, _delta_l, _offset;
     waypoint _start_point;
     std::vector<SampleWaypoint> _sps; // 所有初始采样点，构成节点图
     std::vector<std::vector<long long>> _edges; // 初始节点之间的代价
@@ -245,9 +245,9 @@ class CreateConvexSpace {
     void sample_on_polynomial(const int &i, const int &j, double delta_s = 1);
 public: 
     // 初始化，并确定所有节点s，l坐标
-    void init(waypoint &start_point, int s_num, int l_num, double delta_s, double delta_l);
+    void init(waypoint &start_point, int s_num, int l_num, double delta_s, double delta_l, double offset);
     // 创建路径粗解
-    void create_rough_path(const std::vector<obstacle> &obstacles, double w1 = 1, double w2 = 100, double w3 = 100);
+    void create_rough_path(const std::vector<obstacle> &obstacles, double w1 = 100, double w2 = 100, double w3 = 100);
     // 获取路径粗解
     void get_rough_path(std::vector<waypoint> &rough_path);
     // 创建凸空间（获取路径上下边界）
