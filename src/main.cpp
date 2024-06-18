@@ -5,8 +5,15 @@
 #include "matplotlibcpp.h"
 #include "em_planner.h"
 #include <chrono>
+#include <thread>
+#include <atomic>
 namespace plt = matplotlibcpp;
+std::atomic<bool> running(true); //原子变量可以保证其每一次读写操作不可分割，提供了一种轻量级的线程互斥功能
+void signalHandler(int a) {
+    running = false;
+}
 int main(){
+    signal(SIGINT, signalHandler);
     std::vector<waypoint> global_path;//全局路径
     readPath(global_path, "../data/waypoints.txt");
     std::vector<obstacle> obstacle_array;//障碍物信息
@@ -28,34 +35,43 @@ int main(){
         road_left_edge.push_back(left_p);
         road_right_edge.push_back(right_p);
     }
-    EMplanner planner;
-    planner.init(global_path, obstacle_array, 0.1);
+    EMplanner planner1, planner2;
+    planner1.init(global_path, obstacle_array, 0.1);
+    planner2.init(global_path, obstacle_array, 0.1);
     location host_location;
     host_location.x = 42;
     host_location.y = 436;
     host_location.t = 0;
-    std::vector<waypoint> trajectory;
+    std::vector<waypoint> trajectory1, trajectory2;
     std::vector<waypoint> ref_line;
     std::vector<waypoint> qp_path;
     std::vector<waypoint> dp_path;
     int control = 0;
-    while (true) {
+    while (running) {
         std::cout << "******周期：" << ++control << "******" << std::endl;
         std::cout << "******车辆位置：" << host_location.x << "   " << host_location.y << "******" << std::endl;
-        planner.update_location_info(host_location);
-        planner.run();
-        planner.get_final_trajectory(trajectory);
-        planner.get_ref_line(ref_line);
-        planner.get_qp_path(qp_path);
-        planner.get_dp_path(dp_path);
+        planner1.update_location_info(host_location);
+        planner2.update_location_info(host_location);
+        std::thread t1(&EMplanner::run, &planner1, -1.5);
+        std::thread t2(&EMplanner::run, &planner2, 1.5);
+        t1.join();
+        t2.join();
+        // planner1.run();
+        planner1.get_final_trajectory(trajectory1);
+        planner2.get_final_trajectory(trajectory2);
+        planner1.get_ref_line(ref_line);
+        planner2.get_qp_path(qp_path);
+        planner1.get_dp_path(dp_path);
         plt::cla();
         plt::plotTrajectory(global_path);
         plt::plotTrajectory(road_left_edge, "g");
         plt::plotTrajectory(road_right_edge, "g");
         plt::plotTrajectory(ref_line, "y");
-        plt::plotTrajectory(dp_path, "blue");
-        plt::plotTrajectory(trajectory, "purple");
         plt::plotTrajectory(obstacle_array, ".r");
+        // 不知道为什么在t1这个线程中最后得到的轨迹在开头会多出五个点，非常抽象
+        std::vector<waypoint> new_trajectory1(trajectory1.begin() + 5, trajectory1.end());
+        plt::plotTrajectory(new_trajectory1, "purple");
+        plt::plotTrajectory(trajectory2, "blue");
         plt::plot(std::vector<double> {host_location.x}, std::vector<double> {host_location.y}, "vc");
         plt::xlim(host_location.x - 40,host_location.x + 80);
         plt::ylim(host_location.y - 30,host_location.y + 80);
@@ -77,22 +93,22 @@ int main(){
     // location1.y = 455;
     // location2.x = 250;
     // location2.y = 510;
-    // EMplanner planner;
-    // planner.init(global_path, obstacle_array, 0.1);
-    // planner.update_location_info(location1);
-    // planner.update_ref_line();
-    // planner.update_start_point();
-    // planner.convert_start_point();
-    // planner.splice_trajectory();
-    // planner.update_obstacle_info();
-    // planner.convert_obstacles_point();
-    // planner.dp_path_sample();
+    // EMplanner1 planner1;
+    // planner1.init(global_path, obstacle_array, 0.1);
+    // planner1.update_location_info(location1);
+    // planner1.update_ref_line();
+    // planner1.update_start_point();
+    // planner1.convert_start_point();
+    // planner1.splice_trajectory();
+    // planner1.update_obstacle_info();
+    // planner1.convert_obstacles_point();
+    // planner1.dp_path_sample();
     // std::vector<waypoint> rough_path;
-    // planner.get_dp_path(rough_path);
+    // planner1.get_dp_path(rough_path);
     // std::cout << "路径大小：" << rough_path.size() << std::endl;
-    // planner.create_qp_path();
+    // planner1.create_qp_path();
     // std::vector<waypoint> final_path;
-    // planner.get_qp_path(final_path);
+    // planner1.get_qp_path(final_path);
     // Path_Smoother path_smoother;
     // std::vector<waypoint> final_ref_line1, final_ref_line2;
     // path_smoother.init(&global_path);

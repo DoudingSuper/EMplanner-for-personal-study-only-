@@ -341,15 +341,15 @@ void EMplanner::get_dp_path(std::vector<waypoint> &dp_path) {
 }
 
 
-void EMplanner::run() {
+void EMplanner::run(double offset) {
         update_ref_line();
         update_start_point();
         convert_start_point();
         bool need_splice = convert_start_point();
         update_obstacle_info();
         convert_obstacles_point();
-        dp_path_sample();
-        create_qp_path();
+        dp_path_sample(offset);
+        create_qp_path(offset);
         convert_qp_path();
         dp_speed_sample();
         create_qp_speed();

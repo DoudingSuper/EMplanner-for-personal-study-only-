@@ -83,7 +83,8 @@ public:
     void get_qp_path(std::vector<waypoint> &qp_path);
     void get_dp_path(std::vector<waypoint> &dp_path);
     // 规划器运行
-    void run();
+    void run(double offset = 0);
+    // 
 
 };
 

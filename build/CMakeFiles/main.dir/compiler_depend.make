@@ -1913,7 +1913,10 @@ CMakeFiles/main.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
   /usr/include/c++/11/ctime \
-  /usr/include/c++/11/bits/parse_numbers.h
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h
 
 CMakeFiles/main.dir/src/path_smoother.cpp.o: ../src/path_smoother.cpp \
   /usr/include/stdc-predef.h \
@@ -2990,6 +2993,12 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 ../include/trajectory_NLP.h:
 
 ../src/path_smoother.cpp:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
+/usr/include/c++/11/bits/std_thread.h:
+
+/usr/include/c++/11/thread:
 
 /usr/include/c++/11/bits/parse_numbers.h:
 
