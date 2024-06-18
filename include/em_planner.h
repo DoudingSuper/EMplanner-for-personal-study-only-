@@ -66,7 +66,7 @@ public:
     /* ***调参注意事项：***
     这里的参数会影响到二次规划能否求解成功，暂时不知道原因
     */
-    void create_qp_path(double w_ref = 10, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
+    void create_qp_path(double w_ref = 5, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
     // 获取最终路径
     void convert_qp_path();
     // 在st坐标系中进行采样，用于速度动态规划
