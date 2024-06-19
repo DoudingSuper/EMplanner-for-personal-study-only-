@@ -7,12 +7,14 @@
 #include <chrono>
 #include <thread>
 #include <atomic>
+#include <fstream>
 namespace plt = matplotlibcpp;
 std::atomic<bool> running(true); //原子变量可以保证其每一次读写操作不可分割，提供了一种轻量级的线程互斥功能
 void signalHandler(int a) {
     running = false;
 }
 int main(){
+    std::ofstream file("timeWithParallel.csv");
     signal(SIGINT, signalHandler);
     std::vector<waypoint> global_path;//全局路径
     readPath(global_path, "../data/waypoints.txt");
@@ -47,7 +49,7 @@ int main(){
     std::vector<waypoint> qp_path;
     std::vector<waypoint> dp_path1, dp_path2;
     int control = 0;
-    while (running) {
+    while (control < 160) {
         auto start_t = std::chrono::steady_clock::now();
         std::cout << "******周期：" << ++control << "******" << std::endl;
         std::cout << "******车辆位置：" << host_location.x << "   " << host_location.y << "******" << std::endl;
@@ -56,7 +58,7 @@ int main(){
         std::thread t1(&EMplanner::run, &planner1, 2);
         std::thread t2(&EMplanner::run, &planner2, -2);
         t1.join();
-        t2.join();
+        t2.join(); // 阻塞主线程，使其等待子线程结束
         // planner1.run();
         planner1.get_final_trajectory(trajectory1);
         planner2.get_final_trajectory(trajectory2);
@@ -88,9 +90,16 @@ int main(){
         host_location.dd_l = qp_path.at(2).dd_l;
         host_location.t = qp_path.at(2).t;
         auto end_t = std::chrono::steady_clock::now();
-        auto diff = std::chrono::duration <double, std::milli> (start_t - end_t).count();
+        auto diff = std::chrono::duration <double, std::milli> (end_t - start_t).count();
         std::cout << "总用时" << diff << std::endl;
+        if (!file.is_open()) {
+            std::cerr << "Error opening file" << std::endl;
+            continue;
+        }
+        file << diff;
+        file << "\n"; // 分行符
     }
+    file.close();
     // // // plt::plotTrajectory(global_path, "y");
     // std::cout << "总路径点数" << global_path.size() << std::endl;
     // // my_path.get_dir_kappa();
