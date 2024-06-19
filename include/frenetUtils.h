@@ -247,7 +247,7 @@ public:
     // 初始化，并确定所有节点s，l坐标
     void init(waypoint &start_point, int s_num, int l_num, double delta_s, double delta_l, double offset);
     // 创建路径粗解
-    void create_rough_path(const std::vector<obstacle> &obstacles, double w1 = 100, double w2 = 100, double w3 = 100);
+    void create_rough_path(const std::vector<obstacle> &obstacles, double w1 = 10, double w2 = 10, double w3 = 100);
     // 获取路径粗解
     void get_rough_path(std::vector<waypoint> &rough_path);
     // 创建凸空间（获取路径上下边界）

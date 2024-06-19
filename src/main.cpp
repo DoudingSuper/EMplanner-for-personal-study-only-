@@ -45,15 +45,16 @@ int main(){
     std::vector<waypoint> trajectory1, trajectory2;
     std::vector<waypoint> ref_line;
     std::vector<waypoint> qp_path;
-    std::vector<waypoint> dp_path;
+    std::vector<waypoint> dp_path1, dp_path2;
     int control = 0;
     while (running) {
+        auto start_t = std::chrono::steady_clock::now();
         std::cout << "******周期：" << ++control << "******" << std::endl;
         std::cout << "******车辆位置：" << host_location.x << "   " << host_location.y << "******" << std::endl;
         planner1.update_location_info(host_location);
         planner2.update_location_info(host_location);
-        std::thread t1(&EMplanner::run, &planner1, -1.5);
-        std::thread t2(&EMplanner::run, &planner2, 1.5);
+        std::thread t1(&EMplanner::run, &planner1, 2);
+        std::thread t2(&EMplanner::run, &planner2, -2);
         t1.join();
         t2.join();
         // planner1.run();
@@ -61,7 +62,8 @@ int main(){
         planner2.get_final_trajectory(trajectory2);
         planner1.get_ref_line(ref_line);
         planner2.get_qp_path(qp_path);
-        planner1.get_dp_path(dp_path);
+        planner1.get_dp_path(dp_path1);
+        planner2.get_dp_path(dp_path2);
         plt::cla();
         plt::plotTrajectory(global_path);
         plt::plotTrajectory(road_left_edge, "g");
@@ -69,9 +71,12 @@ int main(){
         plt::plotTrajectory(ref_line, "y");
         plt::plotTrajectory(obstacle_array, ".r");
         // 不知道为什么在t1这个线程中最后得到的轨迹在开头会多出五个点，非常抽象
-        std::vector<waypoint> new_trajectory1(trajectory1.begin() + 5, trajectory1.end());
+        std::vector<waypoint> new_trajectory1(trajectory1.begin() + 5, trajectory1.end() - 3);
+        std::vector<waypoint> new_trajectory2(trajectory2.begin(), trajectory2.end() - 3);
         plt::plotTrajectory(new_trajectory1, "purple");
-        plt::plotTrajectory(trajectory2, "blue");
+        plt::plotTrajectory(dp_path1, "pink");
+        plt::plotTrajectory(new_trajectory2, "blue");
+        plt::plotTrajectory(dp_path2, "pink");
         plt::plot(std::vector<double> {host_location.x}, std::vector<double> {host_location.y}, "vc");
         plt::xlim(host_location.x - 40,host_location.x + 80);
         plt::ylim(host_location.y - 30,host_location.y + 80);
@@ -82,6 +87,9 @@ int main(){
         host_location.d_l = qp_path.at(2).d_l;
         host_location.dd_l = qp_path.at(2).dd_l;
         host_location.t = qp_path.at(2).t;
+        auto end_t = std::chrono::steady_clock::now();
+        auto diff = std::chrono::duration <double, std::milli> (start_t - end_t).count();
+        std::cout << "总用时" << diff << std::endl;
     }
     // // // plt::plotTrajectory(global_path, "y");
     // std::cout << "总路径点数" << global_path.size() << std::endl;

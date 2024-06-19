@@ -66,7 +66,7 @@ public:
     /* ***调参注意事项：***
     这里的参数会影响到二次规划能否求解成功，暂时不知道原因
     */
-    void create_qp_path(double offset = 0, double w_ref = 5, double w_center = 10, double w_dl = 100, double w_ddl = 100, double w_dddl = 1);
+    void create_qp_path(double offset = 0, double w_ref = 300, double w_center = 15000, double w_dl = 1000000, double w_ddl = 50, double w_dddl = 2000);
     // 获取最终路径
     void convert_qp_path();
     // 在st坐标系中进行采样，用于速度动态规划
@@ -84,7 +84,5 @@ public:
     void get_dp_path(std::vector<waypoint> &dp_path);
     // 规划器运行
     void run(double offset = 0);
-    // 
-
 };
 

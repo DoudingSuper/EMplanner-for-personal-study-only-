@@ -213,6 +213,7 @@ void EMplanner::create_qp_path(double offset, double w_ref, double w_center, dou
     _qp_path.clear();
     convert_dp_path();
     int n = _dp_path.size(); // 优化目标数量
+    double end_l_disire = offset, end_dl_disire = 0, end_ddl_disire = 0;
     Eigen::MatrixXd l(2, 6), A = Eigen::MatrixXd::Zero(2 * (n - 1) + n + 3, 3 * n);
     Eigen::MatrixXd a(3, 1), m_ref = Eigen::MatrixXd::Zero(3 * n, n);
     a << 1, 0, 0;
@@ -222,6 +223,9 @@ void EMplanner::create_qp_path(double offset, double w_ref, double w_center, dou
     Eigen::MatrixXd c(3, 1), m_ddl = Eigen::MatrixXd::Zero(3 * n, n);
     c << 0, 0, 1;
     Eigen::MatrixXd d(3, 1), m_dddl = Eigen::MatrixXd::Zero(3 * n, n);
+    Eigen::MatrixXd m_end_l = Eigen::MatrixXd::Zero(3 * n, n);
+    Eigen::MatrixXd m_end_dl = Eigen::MatrixXd::Zero(3 * n, n);
+    Eigen::MatrixXd m_end_ddl = Eigen::MatrixXd::Zero(3 * n, n);
     
     Eigen::VectorXd gradient = Eigen::VectorXd::Zero(3 * n);
     std::vector<double> road_ub, road_lb;
@@ -243,8 +247,11 @@ void EMplanner::create_qp_path(double offset, double w_ref, double w_center, dou
         if (i < n - 1)
             m_dddl.block(3 * (i + 1), i, 3, 1) = a;
         // gradient[3 * i] = -2 * _dp_path[i].l;
-        gradient[3 * i] = - w_center * (road_ub[i] + road_lb[i]) - w_ref * offset * 2 ;
+        gradient[3 * i] = - w_center * (road_lb[i] + road_ub[i]);
     }
+    m_end_l(n-3, n-1) = 1;
+    m_end_dl(n-2, n-1) = 1;
+    m_end_ddl(n-1, n-1) = 1;
     ub[2 * (n - 1)] = std::max(road_ub[0], _host_lacation.l);
     lb[2 * (n - 1)] = std::min(road_lb[0], _host_lacation.l);
     A.block(2 * (n - 1) + n, 0, 3, 3) = Eigen::MatrixXd::Identity(3, 3);
@@ -255,11 +262,16 @@ void EMplanner::create_qp_path(double offset, double w_ref, double w_center, dou
     lb[2 * (n - 1) + n] = _host_lacation.l;
     lb[2 * (n - 1) + n + 1] = _host_lacation.d_l;
     lb[2 * (n - 1) + n + 2] = _host_lacation.dd_l;
+    double w_end_l = 10000000, w_end_dl = 100, w_end_ddl = 100;
+    gradient[3 * n - 3] += - 2 * w_end_l * end_l_disire;
+    gradient[3 * n - 2] += - 2 * w_end_dl * end_dl_disire;
+    gradient[3 * n - 1] += - 2 * w_end_ddl * end_ddl_disire;
     if (_last_n != n) {
         _LinearMatrix = A.sparseView();
         _Hessian = (w_ref * m_ref * m_ref.transpose() + w_center * m_center * m_center.transpose() +
-                                           w_dl * m_dl * m_dl.transpose() + w_ddl * m_ddl * m_ddl.transpose() +
-                                           w_dddl * (2 * m_ddl * m_ddl.transpose() - 2 * m_ddl * m_dddl.transpose())).sparseView();
+                    w_dl * m_dl * m_dl.transpose() + w_ddl * m_ddl * m_ddl.transpose() +
+                    w_dddl * (2 * m_ddl * m_ddl.transpose() - 2 * m_ddl * m_dddl.transpose()) + 
+                    w_end_l * m_end_l * m_end_l.transpose() + w_end_dl * m_end_dl * m_end_dl.transpose() + w_end_ddl * m_end_ddl * m_end_ddl.transpose()).sparseView();
         _last_n = n;
     }
     // for (int i = 0; i < n; i++)
