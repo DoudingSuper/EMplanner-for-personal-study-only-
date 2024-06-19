@@ -14,7 +14,7 @@ void signalHandler(int a) {
     running = false;
 }
 int main(){
-    std::ofstream file("timeWithParallel.csv");
+    std::ofstream file("timeWithoutParallel.csv");
     signal(SIGINT, signalHandler);
     std::vector<waypoint> global_path;//全局路径
     readPath(global_path, "../data/waypoints.txt");
@@ -55,10 +55,8 @@ int main(){
         std::cout << "******车辆位置：" << host_location.x << "   " << host_location.y << "******" << std::endl;
         planner1.update_location_info(host_location);
         planner2.update_location_info(host_location);
-        std::thread t1(&EMplanner::run, &planner1, 2);
-        std::thread t2(&EMplanner::run, &planner2, -2);
-        t1.join();
-        t2.join(); // 阻塞主线程，使其等待子线程结束
+        planner1.run(-2);
+        planner2.run(2);
         // planner1.run();
         planner1.get_final_trajectory(trajectory1);
         planner2.get_final_trajectory(trajectory2);
@@ -73,7 +71,7 @@ int main(){
         plt::plotTrajectory(ref_line, "y");
         plt::plotTrajectory(obstacle_array, ".r");
         // 不知道为什么在t1这个线程中最后得到的轨迹在开头会多出五个点，非常抽象
-        std::vector<waypoint> new_trajectory1(trajectory1.begin() + 5, trajectory1.end() - 3);
+        std::vector<waypoint> new_trajectory1(trajectory1.begin(), trajectory1.end() - 3);
         std::vector<waypoint> new_trajectory2(trajectory2.begin(), trajectory2.end() - 3);
         plt::plotTrajectory(new_trajectory1, "purple");
         plt::plotTrajectory(dp_path1, "pink");
