@@ -72,6 +72,8 @@
         "variant": "cpp",
         "*.tpp": "cpp",
         "sparse": "cpp",
-        "dense": "cpp"
+        "dense": "cpp",
+        "csignal": "cpp",
+        "any": "cpp"
     }
 }

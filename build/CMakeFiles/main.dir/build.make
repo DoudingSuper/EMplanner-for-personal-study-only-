@@ -158,6 +158,8 @@ main: CMakeFiles/main.dir/src/em_planner.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: /usr/lib/x86_64-linux-gnu/libpython3.10.so
 main: /usr/local/lib/libOsqpEigen.so.0.7.0
+main: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so
+main: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
 main: /usr/local/lib/libosqp.so
 main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/superdouding/apollo/my_em_planner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable main"

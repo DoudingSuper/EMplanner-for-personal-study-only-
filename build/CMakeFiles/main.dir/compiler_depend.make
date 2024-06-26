@@ -1916,7 +1916,40 @@ CMakeFiles/main.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/parse_numbers.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
-  /usr/include/c++/11/bits/this_thread_sleep.h
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/mpi.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/mpi_portable_platform.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/mpicxx.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/constants.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/exception.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win_inln.h \
+  /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file_inln.h
 
 CMakeFiles/main.dir/src/path_smoother.cpp.o: ../src/path_smoother.cpp \
   /usr/include/stdc-predef.h \
@@ -2992,7 +3025,39 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 ../include/trajectory_NLP.h:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm.h:
+
 ../src/path_smoother.cpp:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/mpicxx.h:
 
 /usr/include/c++/11/bits/this_thread_sleep.h:
 
@@ -3045,6 +3110,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/python3.10/numpy/_numpyconfig.h:
 
 /usr/include/python3.10/numpy/numpyconfig.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/mpi.h:
 
 /usr/include/python3.10/numpy/npy_common.h:
 
@@ -3188,6 +3255,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 /usr/include/x86_64-linux-gnu/asm/posix_types.h:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/mpi_portable_platform.h:
+
 /usr/include/linux/stddef.h:
 
 /usr/include/linux/posix_types.h:
@@ -3251,6 +3320,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/c++/11/bits/shared_ptr.h:
 
 /usr/include/c++/11/bits/unique_ptr.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm_inln.h:
 
 /usr/include/c++/11/bit:
 
@@ -3480,6 +3551,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 /usr/include/c++/11/string:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group.h:
+
 /usr/include/python3.10/weakrefobject.h:
 
 /usr/include/c++/11/tr1/gamma.tcc:
@@ -3503,6 +3576,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/c++/11/functional:
 
 /usr/local/include/coin-or/IpReturnCodes_inc.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/constants.h:
 
 /usr/include/c++/11/bits/stl_bvector.h:
 
@@ -3573,6 +3648,10 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/local/include/coin-or/IpTypes.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request.h:
 
 /usr/include/c++/11/cmath:
 
@@ -3690,6 +3769,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 /usr/include/c++/11/clocale:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype_inln.h:
+
 /usr/include/c++/11/vector:
 
 /usr/include/c++/11/cstdarg:
@@ -3729,6 +3810,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 ../src/em_planner.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group_inln.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -3837,6 +3920,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/features-time64.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler.h:
 
 /usr/include/c++/11/deque:
 
@@ -4002,6 +4087,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 ../include/define.h:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/exception.h:
+
 /usr/include/eigen3/Eigen/src/Core/util/Memory.h:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h:
@@ -4033,6 +4120,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/Half.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status_inln.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/BFloat16.h:
 
@@ -4168,6 +4257,10 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 /usr/include/c++/11/bits/atomic_base.h:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file_inln.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler_inln.h:
+
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
 /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h:
@@ -4226,6 +4319,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h:
 
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op_inln.h:
+
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/ConjHelper.h:
@@ -4261,6 +4356,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/eigen3/Eigen/Cholesky:
 
 /usr/include/eigen3/Eigen/Jacobi:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions.h:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
@@ -4459,6 +4556,8 @@ CMakeFiles/main.dir/src/trajectory_NLP.cpp.o: ../src/trajectory_NLP.cpp \
 /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky.h:
 
 /usr/include/eigen3/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h:
+
+/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm_inln.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 

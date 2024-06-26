@@ -564,7 +564,7 @@ double CreateConvexSpace::cal_obs_dist_cost(const waypoint &p, const std::vector
     for (const auto &obs : obstacles) {
         double dist = sqrt((p.s - obs.s) * (p.s - obs.s) + (p.l - obs.l) * (p.l - obs.l));
         if (dist < 0.5) {
-            cost += MAX; // 距离过近，代价设为极大
+            cost += MY_MAX; // 距离过近，代价设为极大
         }
         else if (dist >= 0.5 && dist < 2) {
             cost += 1000 * (2 - dist);
@@ -620,7 +620,7 @@ void CreateConvexSpace::create_rough_path(const std::vector<obstacle> &obstacles
     // 动态规划确定所有点的最小cost
     for (int j = 1; j < _s_num; j++) {
         for (int i = 0; i < _l_num; i++) {
-            double min_cost = MAX;
+            double min_cost = MY_MAX;
             int last_i = -1;
             for (int k = 0; k < _l_num; k++) {
                 double temp = _sps.at((j - 1) * _l_num + k + 1).cost + _edges[(j - 1) * _l_num + k + 1][j * _l_num + i + 1];
@@ -631,7 +631,7 @@ void CreateConvexSpace::create_rough_path(const std::vector<obstacle> &obstacles
             }
             if (last_i == -1) {
                 // 若该点无法到达，则将其代价置为无穷大
-                _sps.at(j * _l_num + i + 1).cost = MAX;
+                _sps.at(j * _l_num + i + 1).cost = MY_MAX;
                 continue;
             }
             _sps.at(j * _l_num + i + 1).cost = min_cost;
@@ -639,7 +639,7 @@ void CreateConvexSpace::create_rough_path(const std::vector<obstacle> &obstacles
         }
     }
     // 在最后一列中挑选cost最小的点作为终点
-    double min_cost = MAX;
+    double min_cost = MY_MAX;
     int end_i = 0;
     int end_j = _s_num - 1;
     for (int i = 0; i < _l_num; i++) {
