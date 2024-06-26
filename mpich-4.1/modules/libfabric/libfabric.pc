@@ -1,0 +1,14 @@
+prefix=/usr/local/mpich-4.1
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libfabric
+Description: OFI-WG libfabric
+URL: https://github.com/ofiwg/libfabric.git
+Version: 1.15.2
+Requires:
+Cflags: -I${includedir}
+Libs: -L${libdir} -lfabric 
+Libs.private:  -lrt -lnuma -libverbs -luuid -lefa -lnl-3 -lnl-route-3 -latomic -lpthread -ldl
+Requires.private:

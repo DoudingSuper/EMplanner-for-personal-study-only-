@@ -1,0 +1,4 @@
+prov/psm3/psm3/ptl_am/libptl_am_la-am_cuda_memhandle_cache.lo: \
+ prov/psm3/psm3/ptl_am/am_cuda_memhandle_cache.c \
+ /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

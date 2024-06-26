@@ -1,0 +1,11 @@
+prefix=
+exec_prefix=
+libdir=/home/superdouding/apollo/my_em_planner/mpich-4.1/modules/json-c
+includedir=/home/superdouding/apollo/my_em_planner/mpich-4.1/modules/json-c
+
+Name: json
+Description: JSON implementation in C
+Version: 0.13.99
+Requires:
+Libs:  -L/home/superdouding/apollo/my_em_planner/mpich-4.1/modules/json-c -ljson-c
+Cflags: -I/home/superdouding/apollo/my_em_planner/mpich-4.1/modules/json-c

@@ -1,0 +1,3 @@
+prov/psm3/psm3/hal_sockets/libhal_sockets_la-sockets_gdrcpy.lo: \
+ prov/psm3/psm3/hal_sockets/sockets_gdrcpy.c /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

@@ -1,0 +1,21 @@
+/*D
+   MPIX_Delete_error_class - Delete an MPI error class from the known classes
+
+Synopsis:
+.vb
+int MPIX_Delete_error_class(int errorclass)
+.ve
+
+Input Parameters:
+. errorclass - value of the error class to be remoed (integer)
+
+.N ThreadSafe
+
+.N Fortran
+
+.N Errors
+.N MPI_SUCCESS
+.N MPI_ERR_OTHER
+
+D*/
+

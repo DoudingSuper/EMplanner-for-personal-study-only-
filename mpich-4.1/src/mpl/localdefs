@@ -1,0 +1,8 @@
+#! /bin/sh
+# When configured within MPICH via PAC_CONFIG_SUBDIR, this file will be sourced
+# by the top-level configure.  This lets us propagate shell variable changes
+# back upstream.
+
+GPU_SUPPORT=""
+CPPFLAGS="  -DNETMOD_INLINE=__netmod_inline_ofi__"
+WRAPPER_LIBS="$WRAPPER_LIBS -lpthread "

@@ -1,0 +1,3 @@
+prov/psm3/psm3/libpsm3i_la-psm_perf.lo: prov/psm3/psm3/psm_perf.c \
+ /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

@@ -1,0 +1,3 @@
+src/mpid/ch4/netmod/ofi/lib_libmpi_la-func_table.lo: \
+ src/mpid/ch4/netmod/ofi/func_table.c /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

@@ -1,0 +1,31 @@
+/*D
+   MPI_Type_hvector - type_hvector
+
+Synopsis:
+.vb
+int MPI_Type_hvector(int count, int blocklength, MPI_Aint stride,
+                     MPI_Datatype oldtype, MPI_Datatype *newtype)
+.ve
+
+Input Parameters:
++ count - number of blocks (non-negative integer)
+. blocklength - number of elements in each block (non-negative integer)
+. stride - number of bytes between start of each block (integer)
+- oldtype - old datatype (handle)
+
+Output Parameters:
+. newtype - new datatype (handle)
+
+.N Removed
+   The replacement for this routine is 'MPI_Type_create_hvector'.
+
+.N ThreadSafe
+
+.N Fortran
+
+.N Errors
+.N MPI_SUCCESS
+.N MPI_ERR_OTHER
+
+D*/
+

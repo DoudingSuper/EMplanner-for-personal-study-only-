@@ -1,0 +1,3 @@
+src/mpi/coll/src/lib_libmpi_la-csel_json_autogen.lo: \
+ src/mpi/coll/src/csel_json_autogen.c /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

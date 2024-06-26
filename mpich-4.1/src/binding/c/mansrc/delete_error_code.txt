@@ -1,0 +1,21 @@
+/*D
+   MPIX_Delete_error_code - Delete an MPI error code
+
+Synopsis:
+.vb
+int MPIX_Delete_error_code(int errorcode)
+.ve
+
+Input Parameters:
+. errorcode - value of the error code to be remoed (integer)
+
+.N ThreadSafe
+
+.N Fortran
+
+.N Errors
+.N MPI_SUCCESS
+.N MPI_ERR_OTHER
+
+D*/
+

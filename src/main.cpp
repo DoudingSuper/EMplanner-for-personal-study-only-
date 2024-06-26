@@ -75,10 +75,10 @@ int main(){
         // 不知道为什么在t1这个线程中最后得到的轨迹在开头会多出五个点，非常抽象
         std::vector<waypoint> new_trajectory1(trajectory1.begin() + 5, trajectory1.end() - 3);
         std::vector<waypoint> new_trajectory2(trajectory2.begin(), trajectory2.end() - 3);
-        plt::plotTrajectory(new_trajectory1, "purple");
         plt::plotTrajectory(dp_path1, "pink");
-        plt::plotTrajectory(new_trajectory2, "blue");
         plt::plotTrajectory(dp_path2, "pink");
+        plt::plotTrajectory(new_trajectory1, "purple");
+        plt::plotTrajectory(new_trajectory2, "blue");
         plt::plot(std::vector<double> {host_location.x}, std::vector<double> {host_location.y}, "vc");
         plt::xlim(host_location.x - 40,host_location.x + 80);
         plt::ylim(host_location.y - 30,host_location.y + 80);

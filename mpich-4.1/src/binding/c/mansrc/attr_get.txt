@@ -1,0 +1,28 @@
+/*D
+   MPI_Attr_get - Retrieves attribute value by key
+
+Synopsis:
+.vb
+int MPI_Attr_get(MPI_Comm comm, int keyval, void *attribute_val, int *flag)
+.ve
+
+Input Parameters:
++ comm - communicator to which attribute is attached (handle)
+- keyval - key value (integer)
+
+Output Parameters:
++ attribute_val - attribute value, unless flag = false (None)
+- flag - true if an attribute value was extracted; false if no attribute is associated with the key (logical)
+
+.N Deprecated
+   The replacement for this routine is 'MPI_Comm_get_attr'.
+
+.N ThreadSafe
+
+.N Errors
+.N MPI_SUCCESS
+.N MPI_ERR_OTHER
+
+.seealso: MPI_Attr_put, MPI_Keyval_create, MPI_Attr_delete, MPI_Comm_get_attr
+D*/
+

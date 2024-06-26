@@ -1,0 +1,27 @@
+/*D
+   MPI_Attr_put - Stores attribute value associated with a key
+
+Synopsis:
+.vb
+int MPI_Attr_put(MPI_Comm comm, int keyval, void *attribute_val)
+.ve
+
+Input Parameters:
++ comm - communicator to which attribute will be attached (handle)
+. keyval - key value, as returned by MPI_KEYVAL_CREATE (integer)
+- attribute_val - attribute value (None)
+
+.N Deprecated
+   The replacement for this routine is 'MPI_Comm_set_attr'.
+
+.N ThreadSafe
+
+.N Fortran
+
+.N Errors
+.N MPI_SUCCESS
+.N MPI_ERR_OTHER
+
+.seealso: MPI_Attr_get, MPI_Keyval_create, MPI_Attr_delete, MPI_Comm_set_attr
+D*/
+
