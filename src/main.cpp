@@ -163,11 +163,13 @@ int main(int argc, char** argv){
             MPI_Recv(trajectory1.data(), size1 * sizeof(waypoint), waypoint_type, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(ref_line.data(), size_ref, waypoint_type, 0, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(dp_path1.data(), size_dp1, waypoint_type, 0, 4, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            plt::plotTrajectory(ref_line, "y");
             // 不知道为什么在t1这个线程中最后得到的轨迹在开头会多出五个点，非常抽象
-            std::vector<waypoint> new_trajectory1(trajectory1.begin(), trajectory1.end() - 10);
+            std::vector<waypoint> new_trajectory1(trajectory1.begin(), trajectory1.end() - 5);
+            std::vector<waypoint> new_ref_line(ref_line.begin(), ref_line.end() - 10);
+            std::vector<waypoint> new_dp_path1(dp_path1.begin(), dp_path1.end() - 5);
+            plt::plotTrajectory(new_ref_line, "y");
             plt::plotTrajectory(new_trajectory1, "purple");
-            plt::plotTrajectory(dp_path1, "pink");
+            plt::plotTrajectory(new_dp_path1, "pink");
             MPI_Recv(&size2, 1, MPI_INT, 0, 7, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(&size_qp, 1, MPI_INT, 0, 9, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(&size_dp2, 1, MPI_INT, 0, 11, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -178,9 +180,10 @@ int main(int argc, char** argv){
             MPI_Recv(qp_path.data(), size_qp, waypoint_type, 0, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(dp_path2.data(), size_dp2, waypoint_type, 0, 5, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             std::cout << "进程1************" << std::endl;
-            std::vector<waypoint> new_trajectory2(trajectory2.begin(), trajectory2.end() - 10);
+            std::vector<waypoint> new_trajectory2(trajectory2.begin(), trajectory2.end() - 5);
+            std::vector<waypoint> new_dp_path2(dp_path2.begin(), dp_path2.end() - 5);
             plt::plotTrajectory(new_trajectory2, "blue");
-            plt::plotTrajectory(dp_path2, "pink");
+            plt::plotTrajectory(new_dp_path2, "pink");
             if (qp_path.size() > 2) {
                 host_location.x = qp_path.at(2).x;
                 host_location.y = qp_path.at(2).y;
